@@ -8,7 +8,8 @@ if __name__ == '__main__':
             ('koeln PH2', 'https://ph2.uni-koeln.de/das-institut/mitglieder/telefonliste'),
             ('duesseldorf LS3', 'http://www.thphy.uni-duesseldorf.de/~ls3/people.html'),
             ('bonn PI', 'https://www.pi.uni-bonn.de/members'),
-            ('aachen IQI', 'https://www.quantuminfo.physik.rwth-aachen.de/cms/Quantuminfo/Das-Institut/~snur/Mitarbeiter/lidx/1/')]
+            ('aachen IQI', 'https://www.quantuminfo.physik.rwth-aachen.de/cms/Quantuminfo/Das-Institut/~snur/Mitarbeiter/lidx/1/'),
+            ('juelich IAS', 'https://www.fz-juelich.de/ias/DE/UeberUns/Mitarbeitende/_node.html')]
 
     for institute, homepage in homepages:
         context = ssl._create_unverified_context()
@@ -17,6 +18,7 @@ if __name__ == '__main__':
         function_name = institute.lower().replace(' ', '_') + '_members'
         members = getattr(parsers, function_name)(page)
         if members:
-            with open(f'{institute}.txt', 'w') as f:
+            names = institute.split(' ')
+            filename = names[0].capitalize() + names[1]
+            with open(f'{filename}.txt', 'w') as f:
                 f.writelines('\n'.join(members))
-

@@ -29,3 +29,6 @@ def bonn_pi_members(html):
 
 def aachen_iqi_members(html):
     pass
+
+def juelich_ias_members(html):
+    pass
